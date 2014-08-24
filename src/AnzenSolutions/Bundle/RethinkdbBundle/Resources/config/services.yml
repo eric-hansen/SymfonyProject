@@ -1,0 +1,19 @@
+parameters:
+    anzen_solutions_rethinkdb.connect.class: AnzenSolutions\Bundle\RethinkdbBundle\Handler\Connect
+    
+    anzen_solutions_rethinkdb.db: "symfony"
+    anzen_solutions_rethinkdb.host: "localhost"
+    anzen_solutions_rethinkdb.port: 28105
+    anzen_solutions_rethinkdb.auth_key: ""
+    
+services:
+    anzen_solutions_rethinkdb_connect:
+        class: "%anzen_solutions_rethinkdb.connect.class%"
+        arguments:
+            - ""
+            - ""
+            - ""
+            - "%anzen_solutions_rethinkdb.db%"
+            - "%anzen_solutions_rethinkdb.host%"
+            - "%anzen_solutions_rethinkdb.port%"
+            - "%anzen_solutions_rethinkdb.auth_key%"

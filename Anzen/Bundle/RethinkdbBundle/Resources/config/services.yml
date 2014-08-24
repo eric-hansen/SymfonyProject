@@ -1,0 +1,19 @@
+parameters:
+    anzen_rethinkdb.db.class: Anzen\Bundle\RethinkdbBundle\Db
+    anzen_rethinkdb.db: "symfony"
+    anzen_rethinkdb.host: "localhost"
+    anzen_rethinkdb.port: 28105
+    anzen_rethinkdb.auth_key: ""
+    
+services:
+    anzen_rethink.create:
+        class: "%anzen_rethinkdb.create.class%"
+        arguments:
+            - "%anzen_rethinkdb.db%"
+            - "%anzen_rethinkdb.host%"
+            - "%anzen_rethinkdb.port%"
+            - "%anzen_rethinkdb.auth_key%"
+    anzen_rethink.db:
+        class: "%anzen_rethinkdb.db.class%"
+        arguments:
+            - "@anzen_rethink.create"

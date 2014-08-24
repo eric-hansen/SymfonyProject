@@ -1,0 +1,3 @@
+anzen_solutions_rethinkdb_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: AnzenSolutionsRethinkdbBundle:Default:index }
