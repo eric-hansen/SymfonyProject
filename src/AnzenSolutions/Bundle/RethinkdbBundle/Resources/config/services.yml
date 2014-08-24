@@ -1,19 +1,33 @@
 parameters:
     anzen_solutions_rethinkdb.connect.class: AnzenSolutions\Bundle\RethinkdbBundle\Handler\Connect
+    anzen_solutions_rethinkdb.db.class: AnzenSolutions\Bundle\RethinkdbBundle\Handler\Db
+    anzen_solutions_rethinkdb.select.class: AnzenSolutions\Bundle\RethinkdbBundle\Handler\Select
+    anzen_solutions_rethinkdb.datetime.class: AnzenSolutions\Bundle\RethinkdbBundle\Handler\DateTime
     
-    anzen_solutions_rethinkdb.db: "symfony"
-    anzen_solutions_rethinkdb.host: "localhost"
-    anzen_solutions_rethinkdb.port: 28105
+    anzen_solutions_rethinkdb.db: "test"
+    anzen_solutions_rethinkdb.host: "192.168.122.3"
+    anzen_solutions_rethinkdb.port: 28015
     anzen_solutions_rethinkdb.auth_key: ""
+    anzen_solutions_rethinkdb.timeout: 5
     
 services:
     anzen_solutions_rethinkdb_connect:
         class: "%anzen_solutions_rethinkdb.connect.class%"
         arguments:
-            - ""
-            - ""
-            - ""
             - "%anzen_solutions_rethinkdb.db%"
             - "%anzen_solutions_rethinkdb.host%"
             - "%anzen_solutions_rethinkdb.port%"
             - "%anzen_solutions_rethinkdb.auth_key%"
+            - "%anzen_solutions_rethinkdb.timeout%"
+    anzen_solutions_rethinkdb.db:
+        class: "%anzen_solutions_rethinkdb.db.class%"
+        arguments:
+            - "@anzen_solutions_rethinkdb_connect"
+    anzen_solutions_rethinkdb.select:
+        class: "%anzen_solutions_rethinkdb.select.class%"
+        arguments:
+            - "@anzen_solutions_rethinkdb_connect"
+    anzen_solutions_rethinkdb.datetime:
+        class: "%anzen_solutions_rethinkdb.datetime.class%"
+        arguments:
+            - "@anzen_solutions_rethinkdb_connect"
