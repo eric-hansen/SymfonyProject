@@ -1,5 +1,5 @@
 <?php
-namespace AnzenSolutions\Bundle\RethinkdbBundle\Handler\Connect;
+namespace AnzenSolutions\Bundle\RethinkdbBundle\Handler;
 
 class Connect {
     public function __construct($arg1, $arg2, $arg3, $db, $host, $port, $key){
