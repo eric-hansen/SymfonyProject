@@ -15,16 +15,13 @@ class SelectTest extends KernelTestCase {
         self::bootKernel();
         
         $this->select = static::$kernel->getContainer()->get('anzen_solutions_rethinkdb.select');
+        $this->select->table("blah");
     }
     
     public function testGet(){
-        $this->select->table("blah");
         $res = $this->select->get('0ece81fe-25d1-4366-9f47-c32f77fab60d')->run();
         
         $this->assertNotNull($res);
-        
-        $res = $this->select->get(2, true, array('index' => 'do'));
-        $this->assertGreaterThan(0, $res->count());
     }
     
     public function testNewCopy(){
@@ -36,10 +33,14 @@ class SelectTest extends KernelTestCase {
     }
     
     public function testNthRecord(){
-        $this->select->table("blah");
         $res = $this->select->get(2, true, array('index' => 'do'))->run();
         $nth = $this->select->get(2, true, array('index' => 'do'))->nth(1)->run();
         
         $this->assertEquals($res[1], $nth);
+    }
+    
+    public function testExpectedCount(){
+        $res = $this->select->get(2, true, array('index' => 'do'));
+        $this->assertGreaterThan(0, $res->count());
     }
 }

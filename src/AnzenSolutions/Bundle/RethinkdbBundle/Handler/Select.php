@@ -17,7 +17,7 @@ class Select extends Base {
      * @param array $opts Options to pass to the function(s)
      */
     public function get($value, $all=false, array $opts = array()){
-        $this->conn->query = ($all == false) ? $this->conn->query->get($value) : $this->conn->query->getAll($value, $opts);
+        $this->conn->query = ($all === false) ? $this->conn->query->get($value) : $this->conn->query->getAll($value, $opts);
         
         return $this;
     }
